@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://racingicemen.github.io/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/post/introduction/</loc>
+    <loc>https://racingicemen.github.io/post/introduction/</loc>
     <lastmod>2018-03-30T16:07:19-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/categories/blog/</loc>
+    <loc>https://racingicemen.github.io/categories/blog/</loc>
     <lastmod>2018-03-30T16:07:19-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://racingicemen.github.io/categories/</loc>
     <lastmod>2018-03-30T16:07:19-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://racingicemen.github.io/</loc>
     <lastmod>2018-03-30T16:07:19-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/hugo/</loc>
+    <loc>https://racingicemen.github.io/tags/hugo/</loc>
     <lastmod>2018-03-30T16:07:19-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/</loc>
+    <loc>https://racingicemen.github.io/post/</loc>
     <lastmod>2018-03-30T16:07:19-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://racingicemen.github.io/tags/</loc>
     <lastmod>2018-03-30T16:07:19-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
