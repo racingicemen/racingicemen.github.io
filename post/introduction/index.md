@@ -63,4 +63,6 @@ A <-- B: Authentication Response
 @enduml
 ```
 
-is rendered as the following ![image](https://racingicemen.github.io/img/test.png)
+is rendered as
+
+![image](test.png)

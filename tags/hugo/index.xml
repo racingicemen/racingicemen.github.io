@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on Coding Blog</title>
-    <link>https://racingicemen.github.io/tags/hugo/</link>
+    <link>/tags/hugo/</link>
     <description>Recent content in Hugo on Coding Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Fri, 30 Mar 2018 16:07:19 -0700</lastBuildDate>
     
-	<atom:link href="https://racingicemen.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>The First Blog Post</title>
-      <link>https://racingicemen.github.io/post/introduction/</link>
+      <link>/post/introduction/</link>
       <pubDate>Fri, 30 Mar 2018 16:07:19 -0700</pubDate>
       
-      <guid>https://racingicemen.github.io/post/introduction/</guid>
+      <guid>/post/introduction/</guid>
       <description>Introduction This blog mainly serves as an annotation for my software side projects. A lot of these projects are samples from various books and articles. Some will be full applications. All projects will have complete code, including instructions on installing and running the code. Of course, the source code will be provided on GitHub.
 Testing the Even theme In the remainder of this post, I will include some rather meaningless snippets to see how the Hugo theme Even lays out various elements.</description>
     </item>
