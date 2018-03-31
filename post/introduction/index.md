@@ -65,4 +65,4 @@ A <-- B: Authentication Response
 
 is rendered as
 
-![image](test.png)
+![image](/test.png)
