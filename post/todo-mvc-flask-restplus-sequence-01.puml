@@ -1,0 +1,12 @@
+@startuml todo-mvc-flask-restplus-sequence
+title User creates a task
+
+actor User as U
+actor ToDoList as T
+database DB as D
+
+U -> T : create_todo
+T -> D : store
+T <-- D : id
+U <-- T : id
+@enduml

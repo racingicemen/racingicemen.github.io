@@ -1,0 +1,15 @@
+@startuml todo-mvc-flask-restplus-class
+class ToDo {
+    id
+    task
+}
+
+class ToDoList{
+    + create_todo()
+    + list_todos()
+    + delete_todo()
+
+}
+
+ToDoList "1" *-right- "*" ToDo
+@enduml
