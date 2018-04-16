@@ -29,5 +29,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Rest</title>
+      <link>/categories/rest/</link>
+      <pubDate>Sat, 31 Mar 2018 08:06:18 -0700</pubDate>
+      
+      <guid>/categories/rest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web Services</title>
+      <link>/categories/web-services/</link>
+      <pubDate>Sat, 31 Mar 2018 08:06:18 -0700</pubDate>
+      
+      <guid>/categories/web-services/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

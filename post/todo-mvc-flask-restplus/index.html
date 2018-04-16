@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>The First Blog Post - Coding Blog</title>
+  <title>A TodoMVC Application using Flask-RESTPlus - Coding Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Rajesh Kommu" /><meta name="description" content="What this blog is about" />
+<meta name="author" content="Rajesh Kommu" />
+  <meta name="description" content="An introduction to building REST applications using Flask-RESTPlus, Flask-SQLAlchemy
+ In this blog post, I will go through the steps in building a simple ToDo application using Flask and Flask-RESTPlus. This post is based on the quickstart tutorial except we will be plugging in to PostgreSQL via Flask-SQLAlchemy. Finally, the front end will be done in Elm
+Design First let&amp;rsquo;s look briefly at the design of the TodoMVC application." />
+<meta name="keywords" content="what" />
 
 
 
@@ -27,7 +31,7 @@
 <meta name="generator" content="Hugo 0.38.2" />
 
 
-<link rel="canonical" href="/post/introduction/" />
+<link rel="canonical" href="/post/todo-mvc-flask-restplus/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -47,20 +51,18 @@
 
 
 
-<meta property="og:title" content="The First Blog Post" />
-<meta property="og:description" content="What this blog is about" />
+<meta property="og:title" content="A TodoMVC Application using Flask-RESTPlus" />
+<meta property="og:description" content="An introduction to building REST applications using Flask-RESTPlus, Flask-SQLAlchemy
+ In this blog post, I will go through the steps in building a simple ToDo application using Flask and Flask-RESTPlus. This post is based on the quickstart tutorial except we will be plugging in to PostgreSQL via Flask-SQLAlchemy. Finally, the front end will be done in Elm
+Design First let&rsquo;s look briefly at the design of the TodoMVC application." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/introduction/" />
+<meta property="og:url" content="/post/todo-mvc-flask-restplus/" />
 
 
 
-<meta property="article:published_time" content="2018-03-30T16:07:19-07:00"/>
+<meta property="article:published_time" content="2018-03-31T08:06:18-07:00"/>
 
-<meta property="article:modified_time" content="2018-03-30T16:07:19-07:00"/>
-
-
-
-
+<meta property="article:modified_time" content="2018-04-16T13:37:10-07:00"/>
 
 
 
@@ -68,20 +70,28 @@
 
 
 
-<meta itemprop="name" content="The First Blog Post">
-<meta itemprop="description" content="What this blog is about">
-
-
-<meta itemprop="datePublished" content="2018-03-30T16:07:19-07:00" />
-<meta itemprop="dateModified" content="2018-03-30T16:07:19-07:00" />
-<meta itemprop="wordCount" content="233">
 
 
 
-<meta itemprop="keywords" content="hugo," />
+
+<meta itemprop="name" content="A TodoMVC Application using Flask-RESTPlus">
+<meta itemprop="description" content="An introduction to building REST applications using Flask-RESTPlus, Flask-SQLAlchemy
+ In this blog post, I will go through the steps in building a simple ToDo application using Flask and Flask-RESTPlus. This post is based on the quickstart tutorial except we will be plugging in to PostgreSQL via Flask-SQLAlchemy. Finally, the front end will be done in Elm
+Design First let&rsquo;s look briefly at the design of the TodoMVC application.">
+
+
+<meta itemprop="datePublished" content="2018-03-31T08:06:18-07:00" />
+<meta itemprop="dateModified" content="2018-03-31T08:06:18-07:00" />
+<meta itemprop="wordCount" content="114">
+
+
+
+<meta itemprop="keywords" content="Python,Flask,Flask-RESTPlus,Flask-SQLAlchemy,PostgreSQL," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="The First Blog Post"/>
-<meta name="twitter:description" content="What this blog is about"/>
+<meta name="twitter:title" content="A TodoMVC Application using Flask-RESTPlus"/>
+<meta name="twitter:description" content="An introduction to building REST applications using Flask-RESTPlus, Flask-SQLAlchemy
+ In this blog post, I will go through the steps in building a simple ToDo application using Flask and Flask-RESTPlus. This post is based on the quickstart tutorial except we will be plugging in to PostgreSQL via Flask-SQLAlchemy. Finally, the front end will be done in Elm
+Design First let&rsquo;s look briefly at the design of the TodoMVC application."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -144,13 +154,15 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">The First Blog Post</h1>
+      <h1 class="post-title">A TodoMVC Application using Flask-RESTPlus</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2018◦Mar◦30◦Fri </span>
+        <span class="post-time"> 2018◦Mar◦31◦Sat </span>
         <div class="post-category">
             
-              <a href="/categories/blog/"> blog </a>
+              <a href="/categories/rest/"> REST </a>
+            
+              <a href="/categories/web-services/"> Web Services </a>
             
           </div>
         
@@ -166,15 +178,10 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#testing-the-even-theme">Testing the Even theme</a>
+<li><a href="#design">Design</a>
 <ul>
-<li><a href="#code-samples">Code samples</a>
-<ul>
-<li><a href="#python">Python</a></li>
-<li><a href="#c">C++</a></li>
-</ul></li>
-<li><a href="#plant-uml-diagrams">Plant UML diagrams</a></li>
+<li><a href="#static-structure">Static Structure</a></li>
+<li><a href="#dynamic-structure">Dynamic Structure</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -185,75 +192,38 @@
     <div class="post-content">
       
 
-<h1 id="introduction">Introduction</h1>
+<blockquote>
+<p>An introduction to building REST applications using Flask-RESTPlus, Flask-SQLAlchemy</p>
+</blockquote>
 
-<p>This blog mainly serves as an annotation for my software side projects. A lot of these projects are samples
-from various books and articles. Some will be full applications. All projects will have complete code,
-including instructions on installing and running the code. Of course, the source code will be provided on
-<a href="https://github.com/racingicemen">GitHub</a>.</p>
+<p>In this blog post, I will go through the steps in building a simple ToDo application using
+<a href="http://flask.pocoo.org">Flask</a> and <a href="https://github.com/noirbizarre/flask-restplus">Flask-RESTPlus</a>. This
+post is based on the <a href="http://flask-restplus.readthedocs.io/en/stable/quickstart.html">quickstart tutorial</a>
+except we will be plugging in to <a href="http://postgresql.org">PostgreSQL</a> via
+<a href="http://flask-sqlalchemy.pocoo.org">Flask-SQLAlchemy</a>. Finally, the front end will be done in
+<a href="http://elm-lang.org">Elm</a></p>
 
-<h1 id="testing-the-even-theme">Testing the Even theme</h1>
+<h1 id="design">Design</h1>
 
-<p>In the remainder of this post, I will include some rather meaningless snippets to see how the Hugo theme
-<a href="https://github.com/olOwOlo/hugo-theme-even">Even</a> lays out various elements.</p>
+<p>First let&rsquo;s look briefly at the design of the TodoMVC application.</p>
 
-<h2 id="code-samples">Code samples</h2>
+<h2 id="static-structure">Static Structure</h2>
 
-<h3 id="python">Python</h3>
+<p><img src="/static/todo-mvc-flask-restplus-todo-todolist.png" alt="image" /></p>
 
-<pre><code class="language-python">def hello(name):
-    print(f'hello {name}')
+<p>The <code>ToDoList</code> class manages the CRUD operations for the application.</p>
 
-if __name__ == '__main__':
-    hello('racingicemen')
-</code></pre>
+<p>A <code>ToDo</code> consists of</p>
 
-<h3 id="c">C++</h3>
+<ul>
+<li><code>description</code>: a string describing the task.</li>
+<li><code>status</code>: the status of the todo item &mdash; <code>inactive</code>, <code>active</code>, <code>completed</code>, <code>overdue</code></li>
+<li><code>due_datetime</code>: the due date and time for the todo item.</li>
+</ul>
 
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;string&gt;
-using namespace std;
+<h2 id="dynamic-structure">Dynamic Structure</h2>
 
-void hello(const string&amp; name)
-{
-    cout &lt;&lt; name &lt;&lt; endl;
-}
-
-int main()
-{
-    hello(&quot;racingicemen&quot;);
-}
-</code></pre>
-
-<h2 id="plant-uml-diagrams">Plant UML diagrams</h2>
-
-<p><a href="http://plantuml.com">PlantUML</a> is an excellent tool for drawing UML diagrams. Install the PlantUML plugin
-in any of JetBrains&rsquo; products, and you have a state of the art UML editor. The best thing is there is no
-messing around with the mouse etc. Just write your textual description of the diagram in an extremely
-intuitive DSL, and PlantUML does the rest. For example, the following text</p>
-
-<pre><code>@startuml
-
-title a sample PlantUML sequence diagram
-
-skinparam handwritten true
-skinparam sequenceArrowThickness 2
-
-actor Alice as A
-actor Bob as B
-database DB as D
-
-A -&gt; B: Authentication Request
-B -&gt; D: Check authentication
-D --&gt; B: Success
-A &lt;-- B: Authentication Response
-
-@enduml
-</code></pre>
-
-<p>is rendered as</p>
-
-<p><img src="/static/test.png" alt="image" /></p>
+<p><img src="/static/todo-mvc-flask-restplus-sequence.png" alt="image" /></p>
 
     </div>
 
@@ -265,11 +235,11 @@ A &lt;-- B: Authentication Response
   </p>
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
-    <span class="item-content">2018◦Mar◦30◦Fri</span>
+    <span class="item-content">2018◦Apr◦16◦Mon</span>
   </p>
   <p class="copyright-item">
       <span class="item-title">Markdown</span>
-      <span class="item-content"><a class="link-to-markdown" href="/post/introduction/index.md" target="_blank">The Markdown version »</a></span>
+      <span class="item-content"><a class="link-to-markdown" href="/post/todo-mvc-flask-restplus/index.md" target="_blank">The Markdown version »</a></span>
     </p>
   <p class="copyright-item">
     <span class="item-title">License</span>
@@ -283,19 +253,32 @@ A &lt;-- B: Authentication Response
     <footer class="post-footer">
       <div class="post-tags">
           
-          <a href="/tags/hugo/">hugo</a>
+          <a href="/tags/python/">Python</a>
+          
+          <a href="/tags/flask/">Flask</a>
+          
+          <a href="/tags/flask-restplus/">Flask-RESTPlus</a>
+          
+          <a href="/tags/flask-sqlalchemy/">Flask-SQLAlchemy</a>
+          
+          <a href="/tags/postgresql/">PostgreSQL</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/todo-mvc-flask-restplus/">
+          <a class="prev" href="/post/belief-mapper-python-flask-01/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">A TodoMVC Application using Flask-RESTPlus</span>
+            <span class="prev-text nav-default">Implementing the Belief Mapper in Python, Part 1</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         
+          <a class="next" href="/post/introduction/">
+            <span class="next-text nav-default">The First Blog Post</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
       </nav>
     </footer>
   </article>

@@ -23,6 +23,17 @@
     </item>
     
     <item>
+      <title>A TodoMVC Application using Flask-RESTPlus</title>
+      <link>/post/todo-mvc-flask-restplus/</link>
+      <pubDate>Sat, 31 Mar 2018 08:06:18 -0700</pubDate>
+      
+      <guid>/post/todo-mvc-flask-restplus/</guid>
+      <description>An introduction to building REST applications using Flask-RESTPlus, Flask-SQLAlchemy
+ In this blog post, I will go through the steps in building a simple ToDo application using Flask and Flask-RESTPlus. This post is based on the quickstart tutorial except we will be plugging in to PostgreSQL via Flask-SQLAlchemy. Finally, the front end will be done in Elm
+Design First let&amp;rsquo;s look briefly at the design of the TodoMVC application.</description>
+    </item>
+    
+    <item>
       <title>The First Blog Post</title>
       <link>/post/introduction/</link>
       <pubDate>Fri, 30 Mar 2018 16:07:19 -0700</pubDate>

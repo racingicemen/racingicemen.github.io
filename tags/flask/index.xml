@@ -22,5 +22,16 @@
  implemented in Ruby and Rails not actively maintained.  PyBeliefMapper is a port of this project to Python and Flask. In this blog post, we will extract the structure of the existing app and look at the steps involved in mapping the belief of a user.</description>
     </item>
     
+    <item>
+      <title>A TodoMVC Application using Flask-RESTPlus</title>
+      <link>/post/todo-mvc-flask-restplus/</link>
+      <pubDate>Sat, 31 Mar 2018 08:06:18 -0700</pubDate>
+      
+      <guid>/post/todo-mvc-flask-restplus/</guid>
+      <description>An introduction to building REST applications using Flask-RESTPlus, Flask-SQLAlchemy
+ In this blog post, I will go through the steps in building a simple ToDo application using Flask and Flask-RESTPlus. This post is based on the quickstart tutorial except we will be plugging in to PostgreSQL via Flask-SQLAlchemy. Finally, the front end will be done in Elm
+Design First let&amp;rsquo;s look briefly at the design of the TodoMVC application.</description>
+    </item>
+    
   </channel>
 </rss>
