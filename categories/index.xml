@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Coding Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Mar 2018 16:07:19 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 08 Apr 2018 08:13:42 -0700</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Belief Mapper</title>
+      <link>/categories/belief-mapper/</link>
+      <pubDate>Sun, 08 Apr 2018 08:13:42 -0700</pubDate>
+      
+      <guid>/categories/belief-mapper/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Blog</title>

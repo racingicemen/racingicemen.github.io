@@ -6,10 +6,21 @@
     <description>Recent content on Coding Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 30 Mar 2018 16:07:19 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 08 Apr 2018 08:13:42 -0700</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Implementing the Belief Mapper in Python, Part 1</title>
+      <link>/post/belief-mapper-python-flask-01/</link>
+      <pubDate>Sun, 08 Apr 2018 08:13:42 -0700</pubDate>
+      
+      <guid>/post/belief-mapper-python-flask-01/</guid>
+      <description>Porting Belief Mapper tool to Python and Flask
+ Belief Mapper is an interactive tool for creating a visual map of a user&amp;rsquo;s beliefs. The project as it exists now is
+ implemented in Ruby and Rails not actively maintained.  PyBeliefMapper is a port of this project to Python and Flask. In this blog post, we will extract the structure of the existing app and look at the steps involved in mapping the belief of a user.</description>
+    </item>
     
     <item>
       <title>The First Blog Post</title>

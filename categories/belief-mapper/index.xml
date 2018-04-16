@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Coding Blog</title>
-    <link>/post/</link>
-    <description>Recent content in Posts on Coding Blog</description>
+    <title>Belief Mapper on Coding Blog</title>
+    <link>/categories/belief-mapper/</link>
+    <description>Recent content in Belief Mapper on Coding Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 08 Apr 2018 08:13:42 -0700</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/belief-mapper/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,16 +20,6 @@
       <description>Porting Belief Mapper tool to Python and Flask
  Belief Mapper is an interactive tool for creating a visual map of a user&amp;rsquo;s beliefs. The project as it exists now is
  implemented in Ruby and Rails not actively maintained.  PyBeliefMapper is a port of this project to Python and Flask. In this blog post, we will extract the structure of the existing app and look at the steps involved in mapping the belief of a user.</description>
-    </item>
-    
-    <item>
-      <title>The First Blog Post</title>
-      <link>/post/introduction/</link>
-      <pubDate>Fri, 30 Mar 2018 16:07:19 -0700</pubDate>
-      
-      <guid>/post/introduction/</guid>
-      <description>Introduction This blog mainly serves as an annotation for my software side projects. A lot of these projects are samples from various books and articles. Some will be full applications. All projects will have complete code, including instructions on installing and running the code. Of course, the source code will be provided on GitHub.
-Testing the Even theme In the remainder of this post, I will include some rather meaningless snippets to see how the Hugo theme Even lays out various elements.</description>
     </item>
     
   </channel>

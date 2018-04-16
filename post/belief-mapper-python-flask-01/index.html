@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>The First Blog Post - Coding Blog</title>
+  <title>Implementing the Belief Mapper in Python, Part 1 - Coding Blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Rajesh Kommu" /><meta name="description" content="What this blog is about" />
+<meta name="author" content="Rajesh Kommu" />
+  <meta name="description" content="Porting Belief Mapper tool to Python and Flask
+ Belief Mapper is an interactive tool for creating a visual map of a user&amp;rsquo;s beliefs. The project as it exists now is
+ implemented in Ruby and Rails not actively maintained.  PyBeliefMapper is a port of this project to Python and Flask. In this blog post, we will extract the structure of the existing app and look at the steps involved in mapping the belief of a user." />
 
 
 
@@ -27,7 +30,7 @@
 <meta name="generator" content="Hugo 0.38.2" />
 
 
-<link rel="canonical" href="/post/introduction/" />
+<link rel="canonical" href="/post/belief-mapper-python-flask-01/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -47,20 +50,18 @@
 
 
 
-<meta property="og:title" content="The First Blog Post" />
-<meta property="og:description" content="What this blog is about" />
+<meta property="og:title" content="Implementing the Belief Mapper in Python, Part 1" />
+<meta property="og:description" content="Porting Belief Mapper tool to Python and Flask
+ Belief Mapper is an interactive tool for creating a visual map of a user&rsquo;s beliefs. The project as it exists now is
+ implemented in Ruby and Rails not actively maintained.  PyBeliefMapper is a port of this project to Python and Flask. In this blog post, we will extract the structure of the existing app and look at the steps involved in mapping the belief of a user." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/introduction/" />
+<meta property="og:url" content="/post/belief-mapper-python-flask-01/" />
 
 
 
-<meta property="article:published_time" content="2018-03-30T16:07:19-07:00"/>
+<meta property="article:published_time" content="2018-04-08T08:13:42-07:00"/>
 
-<meta property="article:modified_time" content="2018-03-30T16:07:19-07:00"/>
-
-
-
-
+<meta property="article:modified_time" content="2018-04-16T12:53:50-07:00"/>
 
 
 
@@ -68,20 +69,28 @@
 
 
 
-<meta itemprop="name" content="The First Blog Post">
-<meta itemprop="description" content="What this blog is about">
-
-
-<meta itemprop="datePublished" content="2018-03-30T16:07:19-07:00" />
-<meta itemprop="dateModified" content="2018-03-30T16:07:19-07:00" />
-<meta itemprop="wordCount" content="233">
 
 
 
-<meta itemprop="keywords" content="hugo," />
+
+<meta itemprop="name" content="Implementing the Belief Mapper in Python, Part 1">
+<meta itemprop="description" content="Porting Belief Mapper tool to Python and Flask
+ Belief Mapper is an interactive tool for creating a visual map of a user&rsquo;s beliefs. The project as it exists now is
+ implemented in Ruby and Rails not actively maintained.  PyBeliefMapper is a port of this project to Python and Flask. In this blog post, we will extract the structure of the existing app and look at the steps involved in mapping the belief of a user.">
+
+
+<meta itemprop="datePublished" content="2018-04-08T08:13:42-07:00" />
+<meta itemprop="dateModified" content="2018-04-08T08:13:42-07:00" />
+<meta itemprop="wordCount" content="205">
+
+
+
+<meta itemprop="keywords" content="python,flask," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="The First Blog Post"/>
-<meta name="twitter:description" content="What this blog is about"/>
+<meta name="twitter:title" content="Implementing the Belief Mapper in Python, Part 1"/>
+<meta name="twitter:description" content="Porting Belief Mapper tool to Python and Flask
+ Belief Mapper is an interactive tool for creating a visual map of a user&rsquo;s beliefs. The project as it exists now is
+ implemented in Ruby and Rails not actively maintained.  PyBeliefMapper is a port of this project to Python and Flask. In this blog post, we will extract the structure of the existing app and look at the steps involved in mapping the belief of a user."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -144,13 +153,13 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">The First Blog Post</h1>
+      <h1 class="post-title">Implementing the Belief Mapper in Python, Part 1</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2018◦Mar◦30◦Fri </span>
+        <span class="post-time"> 2018◦Apr◦08◦Sun </span>
         <div class="post-category">
             
-              <a href="/categories/blog/"> blog </a>
+              <a href="/categories/belief-mapper/"> Belief Mapper </a>
             
           </div>
         
@@ -166,16 +175,7 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#testing-the-even-theme">Testing the Even theme</a>
-<ul>
-<li><a href="#code-samples">Code samples</a>
-<ul>
-<li><a href="#python">Python</a></li>
-<li><a href="#c">C++</a></li>
-</ul></li>
-<li><a href="#plant-uml-diagrams">Plant UML diagrams</a></li>
-</ul></li>
+<li><a href="#static-relationships">Static Relationships</a></li>
 </ul>
 </nav>
   </div>
@@ -185,75 +185,65 @@
     <div class="post-content">
       
 
-<h1 id="introduction">Introduction</h1>
+<blockquote>
+<p>Porting Belief Mapper tool to Python and Flask</p>
+</blockquote>
 
-<p>This blog mainly serves as an annotation for my software side projects. A lot of these projects are samples
-from various books and articles. Some will be full applications. All projects will have complete code,
-including instructions on installing and running the code. Of course, the source code will be provided on
-<a href="https://github.com/racingicemen">GitHub</a>.</p>
+<p><a href="https://github.com/antonow/belief-mapper">Belief Mapper</a> is an interactive tool for creating a visual
+map of a user&rsquo;s beliefs. The project as it exists now is</p>
 
-<h1 id="testing-the-even-theme">Testing the Even theme</h1>
+<ul>
+<li>implemented in Ruby and Rails</li>
+<li>not actively maintained.</li>
+</ul>
 
-<p>In the remainder of this post, I will include some rather meaningless snippets to see how the Hugo theme
-<a href="https://github.com/olOwOlo/hugo-theme-even">Even</a> lays out various elements.</p>
+<p><a href="https;//github.com/racingicemen">PyBeliefMapper</a> is a port of this project to Python and Flask. In this
+blog post, we will extract the structure of the existing app and look at the steps involved in mapping
+the belief of a user. This will help us in the implemenation of PyBeliefMapper.</p>
 
-<h2 id="code-samples">Code samples</h2>
+<h1 id="static-relationships">Static Relationships</h1>
 
-<h3 id="python">Python</h3>
+<p><img src="/static/belief-mapper-class-diagram.png" alt="image" /></p>
 
-<pre><code class="language-python">def hello(name):
-    print(f'hello {name}')
+<p>Let us first elaborate the relationships between a <code>User</code>, a <code>Belief</code>, and a <code>UserBelief</code></p>
 
-if __name__ == '__main__':
-    hello('racingicemen')
-</code></pre>
+<p>A <code>User</code> has a:</p>
 
-<h3 id="c">C++</h3>
+<ul>
+<li><code>username</code>, which uniquely identifies the user</li>
+<li><code>answered_questions</code>, which is a list of ids of the questions the user has answered</li>
+<li><code>demographic</code>, the <code>Demographic</code> to which the user belongs</li>
+</ul>
 
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;string&gt;
-using namespace std;
+<p>A <code>Belief</code> has a:</p>
 
-void hello(const string&amp; name)
-{
-    cout &lt;&lt; name &lt;&lt; endl;
-}
+<ul>
+<li><code>name</code>, which uniquely identifies the belief</li>
+<li><code>definition</code>, a more detailed description of the belief</li>
+<li><code>resource</code>, ??? not sure what this means ???</li>
+<li><code>starred</code>, ??? not sure what this means ???</li>
+<li><code>category</code>, Category to which the Belief belongs</li>
+</ul>
 
-int main()
-{
-    hello(&quot;racingicemen&quot;);
-}
-</code></pre>
+<p><code>BeliefStats</code> looks at all the <code>User</code>s that hold a certain <code>Belief</code> and records the average
+conviction with which the users hold that belief.</p>
 
-<h2 id="plant-uml-diagrams">Plant UML diagrams</h2>
+<p><strong>NOT SURE ABOUT THE <code>Stat</code>, <code>Comment</code> AND <code>Connection</code> CLASSES</strong></p>
 
-<p><a href="http://plantuml.com">PlantUML</a> is an excellent tool for drawing UML diagrams. Install the PlantUML plugin
-in any of JetBrains&rsquo; products, and you have a state of the art UML editor. The best thing is there is no
-messing around with the mouse etc. Just write your textual description of the diagram in an extremely
-intuitive DSL, and PlantUML does the rest. For example, the following text</p>
+<!-- A ```Belief``` belongs to exactly one ```Category```, while a ```Category``` might have one or more 
+```Belief```s
 
-<pre><code>@startuml
+![image](/static/category-belief.png)
 
-title a sample PlantUML sequence diagram
+Similarly, a ```User``` belongs to exactly one ```Demographic```, while a ```Demographic``` has multiple
+```User```s
 
-skinparam handwritten true
-skinparam sequenceArrowThickness 2
+![image](/static/user-demographic.png)
 
-actor Alice as A
-actor Bob as B
-database DB as D
+Now for the fun part. A ```User``` holds a set of ```Belief```s, and each ```Belief``` has a score. The
+user's belief is mapped based on this score
 
-A -&gt; B: Authentication Request
-B -&gt; D: Check authentication
-D --&gt; B: Success
-A &lt;-- B: Authentication Response
-
-@enduml
-</code></pre>
-
-<p>is rendered as</p>
-
-<p><img src="/static/test.png" alt="image" /></p>
+![image](/static/user-beliefs.png) -->
 
     </div>
 
@@ -265,11 +255,11 @@ A &lt;-- B: Authentication Response
   </p>
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
-    <span class="item-content">2018◦Mar◦30◦Fri</span>
+    <span class="item-content">2018◦Apr◦16◦Mon</span>
   </p>
   <p class="copyright-item">
       <span class="item-title">Markdown</span>
-      <span class="item-content"><a class="link-to-markdown" href="/post/introduction/index.md" target="_blank">The Markdown version »</a></span>
+      <span class="item-content"><a class="link-to-markdown" href="/post/belief-mapper-python-flask-01/index.md" target="_blank">The Markdown version »</a></span>
     </p>
   <p class="copyright-item">
     <span class="item-title">License</span>
@@ -283,19 +273,21 @@ A &lt;-- B: Authentication Response
     <footer class="post-footer">
       <div class="post-tags">
           
-          <a href="/tags/hugo/">hugo</a>
+          <a href="/tags/python/">python</a>
+          
+          <a href="/tags/flask/">flask</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/belief-mapper-python-flask-01/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Implementing the Belief Mapper in Python, Part 1</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
         
+          <a class="next" href="/post/introduction/">
+            <span class="next-text nav-default">The First Blog Post</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
       </nav>
     </footer>
   </article>
